@@ -1,0 +1,39 @@
+.xs {
+  @apply px-3 py-2 text-xs font-medium;
+}
+
+.sm {
+  @apply px-3 py-2 text-sm font-medium;
+}
+
+.md {
+  @apply px-5 py-2.5 text-sm font-medium;
+}
+
+.lg {
+  @apply px-5 py-3 text-base font-medium;
+}
+
+.xl {
+  @apply px-6 py-3.5 text-base font-medium;
+}
+
+.primary {
+  @apply focus:ring-blue-300 bg-blue-700 hover:bg-blue-800 text-white !important;
+}
+
+.secondary {
+  @apply focus:ring-gray-300 bg-gray-50 hover:bg-gray-100 text-gray-900 !important;
+}
+
+.red {
+  @apply text-white bg-red-700 focus:ring-red-300 hover:bg-red-800 !important;
+}
+
+.yellow {
+  @apply text-gray-700 bg-yellow-700 focus:ring-yellow-300 hover:bg-yellow-800 !important;
+}
+
+.green {
+  @apply text-white bg-green-700 focus:ring-green-300 hover:bg-green-800 !important;
+}

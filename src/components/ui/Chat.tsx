@@ -11,6 +11,8 @@ import {
 } from "firebase/firestore"
 import { MessageType } from "../../types/messageType"
 import Message from "./Message"
+import Button from "../Button"
+import { FaTelegramPlane } from "react-icons/fa"
 
 const Chat = () => {
   const [message, setMessage] = useState("")
@@ -58,6 +60,7 @@ const Chat = () => {
       uid
     })
   }
+
   return (
     <div className="max-w-screen-md mx-auto mt-10">
       <div className="flex flex-col">
@@ -65,17 +68,15 @@ const Chat = () => {
           listMessage.map((msg, i) => <Message key={i} message={msg} />)}
       </div>
 
-      <form className="relative mt-5" onSubmit={handleSubmitForm}>
+      <form className="flex gap-4 mt-5" onSubmit={handleSubmitForm}>
         <input
           type="text"
           name="message"
           placeholder="type here..."
-          className="flex w-full py-2.5 px-6 border rounded-md"
+          className="flex w-full py-2.5 px-6 border rounded-md outline-none focus:ring-2 ring-blue-300 pr-24"
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit" className="absolute py-2.5 px-6">
-          submit
-        </button>
+        <Button type="submit" title="Send" icon={FaTelegramPlane} />
       </form>
     </div>
   )

@@ -2,12 +2,14 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import { auth } from "../../firebase"
 import { MessageType } from "../../types/messageType"
 import classNames from "classnames"
-import { convertTimestamp } from "../../utils/convertTimestampToDate"
+import { convertTimestampToTime } from "../../utils/convertTimestampToDate"
 
 const Message = ({ message }: { message: MessageType }) => {
   const [user] = useAuthState(auth)
 
   if (!user) return ""
+
+  // console.log(message, user)
 
   return (
     <div
@@ -23,21 +25,25 @@ const Message = ({ message }: { message: MessageType }) => {
         src={message.avatar}
         alt="user avatar"
       />
-      <div
-        className={classNames(
-          "py-1 text-left px-6 border rounded-2xl min-w-[100px]",
-          message.uid === user.uid
-            ? "rounded-tr-none bg-lime-300"
-            : "rounded-tl-none bg-slate-100"
-        )}
-      >
-        <p className={classNames("text-sm font-semibold")}>
-          {message.uid === user.uid ? "You" : message.displayName} &#x2022;{" "}
-          <small className="font-normal text-gray-600">
-            {convertTimestamp(message.createdAt)}
-          </small>
-        </p>
-        <p className="user-message">{message.text}</p>
+      <div className="block">
+        <div
+          className={classNames(
+            "py-1 text-left px-6 border rounded-3xl min-w-[100px]",
+            message.uid === user.uid
+              ? "rounded-tr-none bg-lime-300"
+              : "rounded-tl-none bg-slate-100"
+          )}
+        >
+          <p className="user-message">{message.text}</p>
+        </div>
+        <small
+          className={classNames(
+            "text-xs font-semibold text-gray-600 block",
+            message.uid === user.uid ? "text-end mr-1" : "text-start ml-1"
+          )}
+        >
+          {convertTimestampToTime(message.createdAt)}
+        </small>
       </div>
     </div>
   )
